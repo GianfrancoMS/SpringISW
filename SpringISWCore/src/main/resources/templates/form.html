@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head(${heading})"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="layout::sidebar"></div>
+    <div class="main-panel">
+        <nav th:replace="layout::navbar(${heading})"></nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div th:replace="layout::error"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <form th:action="@{${action}}" th:object="${client}" method="post">
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+                                                <input type="text" th:field="*{firstname}" placeholder="First Name"
+                                                       class="form-control border-input" required/>
+                                                <span class="help-block text-danger"
+                                                      id="error-firstname"
+                                                      th:if="${#fields.hasErrors('firstname')}"
+                                                      th:errors="*{firstname}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <input type="text" th:field="*{lastname}" placeholder="Last Name"
+                                                       class="form-control border-input" required/>
+                                                <span class="help-block text-danger"
+                                                      id="error-lastname"
+                                                      th:if="${#fields.hasErrors('lastname')}"
+                                                      th:errors="*{lastname}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>DNI</label>
+                                                <input th:field="*{dni}" type="text" placeholder="DNI"
+                                                       class="form-control border-input" required/>
+                                                <span class="help-block text-danger"
+                                                      id="error-dni"
+                                                      th:if="${#fields.hasErrors('dni')}"
+                                                      th:errors="*{dni}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>Sex</label>
+                                                <div id="radio-male" class="radio">
+                                                    <label><input type="radio" th:field="*{sex}"
+                                                                  value="1"/>Male</label>
+                                                </div>
+                                                <div id="radio-female" class="radio">
+                                                    <label><input type="radio" th:field="*{sex}"
+                                                                  value="0"/>Female</label>
+                                                </div>
+                                                <span class="help-block text-danger"
+                                                      id="error-sex"
+                                                      th:if="${#fields.hasErrors('sex')}"
+                                                      th:errors="*{sex}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <select th:field="*{city}" required class="form-control border-input">
+                                                    <option value="" disabled="disabled" selected>Choose a city</option>
+                                                    <option th:each="city : ${cities}"
+                                                            th:value="${city.id}"
+                                                            th:text="${city.name}"></option>
+                                                </select>
+                                                <span class="help-block text-danger"
+                                                      id="error-city"
+                                                      th:if="${#fields.hasErrors('city')}"
+                                                      th:errors="*{city}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>Hobbies</label>
+                                                <div class="checkbox" th:each="hobby : ${hobbies}">
+                                                    <label th:id="'hobby-'+${hobby.id}"><input th:value="${hobby.id}"
+                                                                                              th:text="${hobby.name}"
+                                                                                              type="checkbox"
+                                                                                              th:field="*{hobbies}"/></label>
+                                                </div>
+                                                <span class="help-block text-danger"
+                                                      id="error-hobby"
+                                                      th:if="${#fields.hasErrors('hobbies')}"
+                                                      th:errors="*{hobbies}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-16">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea th:field="*{description}" placeholder="Description"
+                                                          class="form-control border-input" required></textarea>
+                                            </div>
+                                            <span class="help-block text-danger"
+                                                  id="error-description"
+                                                  th:if="${#fields.hasErrors('description')}"
+                                                  th:errors="*{description}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <div class="form-group col-xs-12 col-md-6">
+                                                <button id="button-submit" type="submit" class="btn btn-primary"
+                                                        th:text="${submit}"></button>
+                                            </div>
+                                            <div class="form-group col-xs-12 col-md-6">
+                                                <a id="button-cancel" class="btn btn-primary" th:href=@{/}
+                                                   role="button">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout::scripts"></div>
+</body>
+</html>

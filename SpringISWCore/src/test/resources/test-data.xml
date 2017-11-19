@@ -1,0 +1,25 @@
+<dataset>
+    <roles id="1" name="ROLE_USER"/>
+
+    <users id="1" username="admin" password="$2a$08$wgwoMKfYl5AUE9QtP4OjheNkkSDoqDmFGjjPE2XTPLDe9xso/hy7u" enabled="true" role_id="1"/>
+
+    <cities id="1" name="Lima"/>
+    <cities id="2" name="Arequipa"/>
+    <cities id="3" name="Cuzco"/>
+    <cities id="4" name="La Libertad"/>
+    <cities id="5" name="Piura"/>
+
+    <hobbies id="1" name="Videogames"/>
+    <hobbies id="2" name="Sports"/>
+    <hobbies id="3" name="Dancing"/>
+    <hobbies id="4" name="Partying"/>
+    <hobbies id="5" name="Reading"/>
+    <hobbies id="6" name="Netflix"/>
+
+    <clients id="1" dni="72192339" first_name="Henry" last_name="Wong" sex="1" description="Professor at UPC" city_id="1"/>
+    <clients id="2" dni="72192338" first_name="Gianfranco" last_name="Monzon" sex="1" description="XD at UPC" city_id="1"/>
+
+    <hobby_client hobby_id="1" client_id="1"/>
+    <hobby_client hobby_id="2" client_id="2"/>
+    <hobby_client hobby_id="3" client_id="2"/>
+</dataset>

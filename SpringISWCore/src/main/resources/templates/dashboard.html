@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head('Dashboard')"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="layout::sidebar"></div>
+    <div class="main-panel">
+        <nav th:replace="layout::navbar('Dashboard')"></nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div th:replace="layout::ok"></div>
+                <div th:replace="layout::error"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Client's list</h4>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th>DNI</th>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Sex</th>
+                                    <th>Options</th>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="client : ${clients}">
+                                        <td th:text=${client.dni}></td>
+                                        <td th:text=${client.firstname}></td>
+                                        <td th:text=${client.lastname}></td>
+                                        <td th:text="${client.sex} ? 'Male' : 'Female'"></td>
+                                        <td>
+                                            <a th:href="@{'/clients/edit/' + ${client.dni}}">
+                                                <button th:id="'button-edit-'+${client.dni}"
+                                                        class="btn btn-warning btn-sm" type="button">
+                                                    <i class="ti-hand-point-up"></i>
+                                                    Edit
+                                                </button>
+                                            </a>
+                                            <a class="removeClient" th:href="@{'/clients/delete/' + ${client.dni}}">
+                                                <button th:id="'button-delete-'+${client.dni}"
+                                                        class="btn btn-danger btn-sm" type="button">
+                                                    <i class="ti-trash"></i>
+                                                    Delete
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete client</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this client?
+            </div>
+            <div class="modal-footer">
+                <button id="buttonCancel" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a id="buttonRemove" href="" class="btn btn-danger">Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout::scripts"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".removeClient").click(function (e) {
+            e.preventDefault();
+            $("#modalRemove #buttonRemove").attr("href", $(this).attr("href"));
+            $("#modalRemove").modal();
+        });
+    });
+</script>
+
+</body>
+</html>

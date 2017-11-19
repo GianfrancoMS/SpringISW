@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head('Log-in')"></head>
+<body>
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>Login</h1>
+        <div th:replace="layout :: error"></div>
+        <form th:action="@{/login}" th:object="${user}" method="post" class="login">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <div class="row">
+                <div class="col-md-12 text-center form-control">
+                    <input th:field="*{username}" placeholder="username" required="required"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center form-control">
+                    <input type="password" th:field="*{password}" placeholder="password" required="required" autocomplete="off"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center form-control">
+                    <button id="button-login" type="submit" class="btn">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

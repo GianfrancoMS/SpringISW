@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head(${heading})"></head>
+<body>
+<div class="wrapper">
+    <div th:replace="layout::sidebar"></div>
+    <div class="main-panel">
+        <nav th:replace="layout::navbar(${heading})"></nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 id="title-error" class="title text-danger" th:text="${error}"></h4>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout::scripts"></div>
+</body>
+</html>

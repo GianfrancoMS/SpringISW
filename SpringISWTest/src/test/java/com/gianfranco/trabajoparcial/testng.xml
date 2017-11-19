@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Browsers">
+    <test name="Internet Explorer" enabled="false">
+        <parameter name="browser" value="IE"/>
+        <classes>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.LoginTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.AddClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.EditClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.DeleteClientTest"/>
+        </classes>
+    </test>
+    <test name="Chrome">
+        <parameter name="browser" value="CHROME"/>
+        <classes>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.LoginTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.AddClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.EditClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.DeleteClientTest"/>
+        </classes>
+    </test>
+    <test name="Firefox" enabled="false">
+        <parameter name="browser" value="FIREFOX"/>
+        <classes>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.LoginTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.AddClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.EditClientTest"/>
+            <class name="com.gianfranco.trabajoparcial.functionaltest.DeleteClientTest"/>
+        </classes>
+    </test>
+</suite>
